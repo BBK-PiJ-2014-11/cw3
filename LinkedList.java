@@ -19,15 +19,32 @@ public class LinkedList implements List {
         }
     }
 
-    public int size(){
+    public int size() {
+        int size = 0;
+        Node counter = head;
+        while (counter!= null) {
+            size++;
+            counter= counter.getNext();
+        }
         return size;
     }
 
+
+
     public ReturnObject get(int index){
-
-        return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
-
+        if (isEmpty()) {
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        }else if (index < 0 || index >= size()) {
+            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        } else {
+            Node current = head;
+            for (int n=0; n<index; n++) {
+                current = current.getNext();
+            }
+            return new ReturnObjectImpl(current.getValue());//check this again
+        }
     }
+
 
     public ReturnObject remove(int index){
 
