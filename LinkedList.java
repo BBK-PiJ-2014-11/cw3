@@ -69,14 +69,23 @@ public class LinkedList implements List {
 
     public ReturnObject add(int index, Object item){
 
-        return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
+        if (item == null) {
+            return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+        } else if (index < 0 || index >= size()) {
+            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        }else {
 
+        }
+        return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
     }
 
     public ReturnObject add(Object item){
 
+        if (item == null) {
+            return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+        }
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
-
+        
     }
 
 }
