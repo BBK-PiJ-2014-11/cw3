@@ -32,6 +32,7 @@ public class LinkedList implements List {
 
 
     public ReturnObject get(int index){
+        
         if (isEmpty()) {
             return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
         }else if (index < 0 || index >= size()) {
@@ -74,18 +75,29 @@ public class LinkedList implements List {
         } else if (index < 0 || index >= size()) {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         }else {
+            // check below
+            Node current = head;
+            for (int i = 1; i < index && current.getNext() != null; i++) {
+                current = current.getNext();
+            }
 
         }
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
     }
 
     public ReturnObject add(Object item){
-
+        Node count = new Node(item);
         if (item == null) {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
         }
+        // check below
+        Node current = head.getNext();
+        while (current.getNext() != null) {
+            current = current.getNext();
+        }
+        current.setNext(count);
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
-        
+
     }
 
 }
