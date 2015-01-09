@@ -32,7 +32,7 @@ public class LinkedList implements List {
 
 
     public ReturnObject get(int index){
-        
+
         if (isEmpty()) {
             return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
         }else if (index < 0 || index >= size()) {
