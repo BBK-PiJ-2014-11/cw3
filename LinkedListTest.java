@@ -13,6 +13,13 @@ public class LinkedListTest {
 
     public void listTest(){
         LinkedList newList = new LinkedList();
+
+        System.out.println("New empty list,testing size");
+        System.out.println("------------------------------------");
+        printList(newList);
+        System.out.println("");
+
+        //adding objects to list
         newList.add(1);
         newList.add("two");
         newList.add(3.0);
@@ -21,6 +28,8 @@ public class LinkedListTest {
         newList.add("seis");
 
         //print out list objects
+        System.out.println("Six objects added,testing size");
+        System.out.println("------------------------------------");
         printList(newList);
 
         //test size;
@@ -31,12 +40,9 @@ public class LinkedListTest {
         System.out.println("Testing get method");
         System.out.println("------------------------------------");
         System.out.println("The fourth element in list is the number "+ newList.get(4).getReturnValue());
-        
+        System.out.println("");
 
-        //test remove;
-        //newList.remove(1);
-        // System.out.println("List length is "+ newList.size()+" objects");
-        // System.out.println("");
+
 
         //test add; with object only
         System.out.println("Adding new String");
@@ -50,8 +56,8 @@ public class LinkedListTest {
         System.out.println("Adding null value");
         System.out.println("------------------------------------");
         newList.add(null);
-        System.out.println("The new objects value is "+ newList.get(7).getError()+" at index position"+newList.get(7));
-        System.out.println("");
+        System.out.println("The new objects value is "+ newList.get(7).getError()+" at index position"+newList.get(7).getReturnValue());
+        System.out.println("");//check returns values
 
         //test add new int
         System.out.println("Adding new integer");
@@ -64,6 +70,21 @@ public class LinkedListTest {
         //test add; (with index and object)
         newList.add(9 ,"neuf"); //recheck first add method
         System.out.println("List length is "+ newList.size()+" objects");
+        System.out.println("");
+
+        //test remove;
+        System.out.println("Testing remove method");
+        System.out.println("------------------------------------");
+        newList.remove(0);
+        System.out.println("List length is "+ newList.size()+" objects");
+        System.out.println("");
+
+        //test errors
+        System.out.println("Testing errors");
+        System.out.println("------------------------------------");
+        System.out.println(newList.get(0).hasError());
+        System.out.println(newList.get(0).getError());
+        System.out.println("");
 
         System.out.println("");
         print(newList);

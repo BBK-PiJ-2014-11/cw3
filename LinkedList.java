@@ -54,14 +54,14 @@ public class LinkedList implements List {
         }else if(index ==0) {
             head = head.getNext();
         }else{
-            Node current = head;
+            Node current = head.getNext();
             while (current!= null){
                 Node previous = head;
-                for(int i=1; i<index; i++) {
+                for(int i=1; i < index; i++) {
                     previous = previous.getNext();
                 }
                 //return new ReturnObjectImpl(current.getValue());
-                previous.setNext(previous.getNext().getNext());// test test test
+                previous.setNext(current.getNext());// test test test
             }
         }
         return removedObject;
