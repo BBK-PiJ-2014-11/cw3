@@ -4,11 +4,9 @@
 public class LinkedList implements List {
 
     private Node head;
-    private int size;
 
     public LinkedList() {
         head = null;
-        size = 0;
     }
 
     public boolean isEmpty() {
@@ -42,7 +40,9 @@ public class LinkedList implements List {
             for (int i=0; i<index; i++) {
                 current = current.getNext();
             }
-            return new ReturnObjectImpl(current.getValue());//test thoroughly
+
+            ReturnObject object = new ReturnObjectImpl(current.getValue());//test thoroughly
+            return object;
         }
     }
 
@@ -103,6 +103,29 @@ public class LinkedList implements List {
             lastNode.setNext(currentNode);
         }
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
+    }
+
+    //printing methods for debugging
+    public void printOut(Node item) {
+        if (item != null) {
+            System.out.println(item.getValue());
+        }else{
+            System.out.println("no item here");
+        }
+    }
+
+    public void print() {
+        if (head == null) {
+            System.out.println("Empty List");
+            return;
+        } else {
+            Node currentNode = head;
+            while (currentNode.getNext() != null) {
+                printOut(currentNode);
+                currentNode = currentNode.getNext();
+            }
+            printOut(currentNode);
+        }
     }
 
 }
