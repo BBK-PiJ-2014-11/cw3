@@ -42,7 +42,7 @@ public class LinkedList implements List {
             for (int i=0; i<index; i++) {
                 current = current.getNext();
             }
-            return new ReturnObjectImpl(current.getValue());//check this again
+            return new ReturnObjectImpl(current.getValue());//test thoroughly
         }
     }
 
@@ -60,10 +60,11 @@ public class LinkedList implements List {
                 for(int i=1; i<index; i++) {
                     previous = previous.getNext();
                 }
-                previous.setNext(previous.getNext().getNext());//check
+                //return new ReturnObjectImpl(current.getValue());
+                previous.setNext(previous.getNext().getNext());// test test test
             }
         }
-        return new ReturnObjectImpl(removedObject);
+        return removedObject;
     }
 
 
@@ -86,18 +87,22 @@ public class LinkedList implements List {
     }
 
     public ReturnObject add(Object item){
-        Node count = new Node(item);
+        //Node count = new Node(item);
         if (item == null) {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
         }
-        // check below
-        Node current = head.getNext();
-        while (current.getNext() != null) {
-            current = current.getNext();
+        // below working
+        Node currentNode = new Node(item);
+        if (isEmpty()) {
+            head = currentNode ;
+        }else{
+            Node lastNode = head;
+            while(lastNode.getNext()!=null) {
+                lastNode = lastNode.getNext();
+            }
+            lastNode.setNext(currentNode);
         }
-        current.setNext(count);
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
-
     }
 
 }
