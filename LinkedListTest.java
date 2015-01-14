@@ -14,10 +14,11 @@ public class LinkedListTest {
     public void listTest(){
         LinkedList newList = new LinkedList();
 
-        System.out.println("New empty list,testing size");
+        System.out.println("New empty list,testing if empty and returning size");
         System.out.println("------------------------------------");
-        printList(newList);
+        System.out.println("If list is empty print true: "+newList.isEmpty());
         System.out.println("");
+        printList(newList);
 
         //adding objects to list
         newList.add(1);
@@ -30,6 +31,8 @@ public class LinkedListTest {
         //print out list objects
         System.out.println("Six objects added,testing size");
         System.out.println("------------------------------------");
+        System.out.println("If list is empty print true: "+newList.isEmpty());
+        System.out.println("");
         printList(newList);
 
         //test size;
@@ -68,8 +71,12 @@ public class LinkedListTest {
         System.out.println("");
 
         //test add; (with index and object)
-        newList.add(9 ,"neuf"); //recheck first add method
+        System.out.println("Testing add to set index position");
+        System.out.println("------------------------------------");
+        newList.add(6 ,"neuf"); //recheck first add method
         System.out.println("List length is "+ newList.size()+" objects");
+        System.out.println("");
+        printList(newList);
         System.out.println("");
 
         //test remove;
@@ -77,6 +84,10 @@ public class LinkedListTest {
         System.out.println("------------------------------------");
         newList.remove(0);
         System.out.println("List length is "+ newList.size()+" objects");
+        System.out.println("");
+        newList.remove(5);
+        System.out.println("List length is "+ newList.size()+" objects");
+        System.out.println("");
         System.out.println("");
 
         //test errors

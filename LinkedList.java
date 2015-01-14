@@ -36,12 +36,12 @@ public class LinkedList implements List {
         }else if (index < 0 || index >= size()) {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else {
-            Node current = head;
+            Node currentNode = head;
             for (int i=0; i<index; i++) {
-                current = current.getNext();
+                currentNode = currentNode.getNext();
             }
 
-            ReturnObject object = new ReturnObjectImpl(current.getValue());//test thoroughly
+            ReturnObject object = new ReturnObjectImpl(currentNode.getValue());//test thoroughly
             return object;
         }
     }
@@ -51,19 +51,16 @@ public class LinkedList implements List {
         ReturnObject removedObject = get(index);
         if (index < 0 || index >= size()) {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
-        }else if(index ==0) {
+        }else if(index == 0) {
             head = head.getNext();
         }else{
-            Node current = head.getNext();
-            while (current!= null){
-                Node previous = head;
+            Node currentNode = head;
                 for(int i=1; i < index; i++) {
-                    previous = previous.getNext();
+                    currentNode = currentNode.getNext();
                 }
                 //return new ReturnObjectImpl(current.getValue());
-                previous.setNext(current.getNext());// test test test
+            currentNode.setNext(currentNode.getNext().getNext());// test test test
             }
-        }
         return removedObject;
     }
 
@@ -77,11 +74,13 @@ public class LinkedList implements List {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         }else {
             // check below
-            Node current = head;
-            for (int i = 1; i < index && current.getNext() != null; i++) {
-                current = current.getNext();
+            Node currentNode = head;
+            Node addNode = new Node(item);
+            for (int i = 1; i<index; i++) {
+                currentNode = currentNode.getNext();
             }
-
+            addNode.setNext(currentNode.getNext());
+            currentNode.setNext(addNode);
         }
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
     }
