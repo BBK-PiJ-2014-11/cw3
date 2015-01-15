@@ -4,9 +4,10 @@
 public class ArrayList implements List {
     private Object[] array;
     private int arraySize;
+    private static int setSize = 11;
 
     public ArrayList() {
-        array = new Object[11];
+        array = new Object[setSize];
         arraySize = 0;
     }
 
@@ -22,11 +23,16 @@ public class ArrayList implements List {
         return arraySize;
     }
 
-    public ReturnObject get(int index){
-
-        return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
-
+    public ReturnObject get(int index) {
+        if (isEmpty()) {
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        } else if(index < 0 || index > size()){
+            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        }else{
+            return new ReturnObjectImpl(array[index]);
+        }
     }
+
 
     public ReturnObject remove(int index){
 
@@ -40,10 +46,14 @@ public class ArrayList implements List {
 
     }
 
-    public ReturnObject add(Object item){
-
-        return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
-
+    public ReturnObject add(Object item) {
+        if (item == null) {
+            return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+        } else {
+            array[arraySize] = item;
+            arraySize++;
+            return new ReturnObjectImpl(array[arraySize]);
+        }
     }
 
 }
