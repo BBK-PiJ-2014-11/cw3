@@ -35,10 +35,17 @@ public class ArrayList implements List {
 
 
     public ReturnObject remove(int index){
-
-        return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
-
+        if (array[index] == null){
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        } else {
+            for (int i=index; i < arraySize; i++) {
+                array[i] = array[i+1];
+            }
+            arraySize--;
+            return new ReturnObjectImpl(array[index]);
+        }
     }
+
 
     public ReturnObject add(int index, Object item){
 
@@ -55,7 +62,6 @@ public class ArrayList implements List {
             return new ReturnObjectImpl(array[arraySize]);
         }
     }
-
 }
 
 /**

@@ -23,22 +23,35 @@ public class ArrayListTest {
         //test add; with object only
         System.out.println("Adding new String");
         System.out.println("------------------------------------");
-        newArrayList.add("7.00");
+        newArrayList.add("1.00");
         System.out.println("List length is " + newArrayList.size() + " objects");
         System.out.println("The new objects value is "+ newArrayList.get(0).getReturnValue());
+        System.out.println("");
+
+        System.out.println("Adding new Integer");
+        System.out.println("------------------------------------");
+        newArrayList.add(2);
+        System.out.println("List length is " + newArrayList.size() + " objects");
+        System.out.println("The new objects value is "+ newArrayList.get(1).getReturnValue());
         System.out.println("");
 
         //test get;
         System.out.println("Testing get method");
         System.out.println("------------------------------------");
-        System.out.println("The first element in list is the number "+ newArrayList.get(0).getReturnValue());
+        System.out.println("The first element in list is the number "+ newArrayList.get(1).getReturnValue());
         System.out.println("");
         print(newArrayList);
+        System.out.println("");
 
+        System.out.println("Testing remove method");
+        System.out.println("------------------------------------");
+        newArrayList.remove(0);
+        System.out.println("List length is "+ newArrayList.size()+" objects");
+        System.out.println("");
+        print(newArrayList);
+        System.out.println("");
 
     }
-
-
 
     public void print(List list) {
         System.out.println("List with index positions and values");
