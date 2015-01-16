@@ -35,10 +35,20 @@ public class ArrayListTest {
         System.out.println("The new objects value is "+ newArrayList.get(1).getReturnValue());
         System.out.println("");
 
+        //test add; with object and index position
+        System.out.println("Adding new string at index 1");
+        System.out.println("------------------------------------");
+        newArrayList.add(1, "3-1");
+        System.out.println("List length is " + newArrayList.size() + " objects");
+        System.out.println("The new objects value is "+ newArrayList.get(1).getReturnValue());
+        System.out.println("");
+        //nb review method
+
+
         //test get;
         System.out.println("Testing get method");
         System.out.println("------------------------------------");
-        System.out.println("The first element in list is the number "+ newArrayList.get(1).getReturnValue());
+        System.out.println("The element at index[1] is the number "+ newArrayList.get(1).getReturnValue());
         System.out.println("");
         print(newArrayList);
         System.out.println("");

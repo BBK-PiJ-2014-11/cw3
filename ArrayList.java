@@ -47,10 +47,22 @@ public class ArrayList implements List {
     }
 
 
-    public ReturnObject add(int index, Object item){
-
-        return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
-
+    public ReturnObject add(int index, Object item) {
+        if (item == null)  {
+            return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+        } else if (index < 0 || index >= arraySize) {
+            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        } else{
+            if (array.length == arraySize + 1) {
+               //array maxed out
+            }
+                for (int i = arraySize; i> index; i--) {
+                    array[i+1] = array[i];
+                }
+                array[index] = item;
+                arraySize++;
+                return new ReturnObjectImpl(array[index]);
+        }
     }
 
     public ReturnObject add(Object item) {
