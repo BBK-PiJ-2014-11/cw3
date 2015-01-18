@@ -61,6 +61,24 @@ public class ArrayListTest {
         print(newArrayList);
         System.out.println("");
 
+        System.out.println("Testing add + extending array");;
+        System.out.println("------------------------------------");
+        newArrayList.add("3");
+        newArrayList.add("Four");
+        newArrayList.add(5.0);
+        newArrayList.add("seis");
+        newArrayList.add("sieben");
+        newArrayList.add(8);
+        newArrayList.add("neuf");
+        newArrayList.add(1010);
+        newArrayList.add(11);
+        newArrayList.add("11+1");
+        newArrayList.add("Friday the 13th");
+        System.out.println("List length is " + newArrayList.size() + " objects");
+
+        System.out.println("");
+        print(newArrayList);
+
     }
 
     public void print(List list) {

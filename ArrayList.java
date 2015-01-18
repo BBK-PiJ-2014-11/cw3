@@ -55,13 +55,18 @@ public class ArrayList implements List {
         } else{
             if (array.length == arraySize + 1) {
                //array maxed out
-            }
-                for (int i = arraySize; i> index; i--) {
-                    array[i+1] = array[i];
+                Object[] tempArray = new Object[arraySize+setSize];
+                for (int i=0; i<arraySize; i++) {
+                    tempArray[i] = array[i];
                 }
-                array[index] = item;
-                arraySize++;
-                return new ReturnObjectImpl(array[index]);
+                array = tempArray;
+            }
+            for (int i = arraySize; i> index; i--) {
+                array[i+1] = array[i];
+            }
+            array[index] = item;
+            arraySize++;
+            return new ReturnObjectImpl(array[index]);
         }
     }
 
@@ -69,6 +74,14 @@ public class ArrayList implements List {
         if (item == null) {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
         } else {
+            if (array.length == arraySize + 1) {
+                //array maxed out
+                Object[] tempArray = new Object[arraySize+setSize];
+                for (int i=0; i<arraySize; i++) {
+                    tempArray[i] = array[i];
+                }
+                array = tempArray;
+            }
             array[arraySize] = item;
             arraySize++;
             return new ReturnObjectImpl(array[arraySize]);
