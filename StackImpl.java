@@ -21,17 +21,27 @@ public class StackImpl extends AbstractStack {
 
     public void push(Object item){
 
+        internalList.add(item);
 
     }
 
     public ReturnObject top(){
 
-        return new ReturnObjectImpl(internalList);
+        if (isEmpty()) {
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        } else {
+            return internalList.get(0);
+        }
+
     }
 
     public ReturnObject pop(){
 
-        return new ReturnObjectImpl(internalList);
+        if (isEmpty()) {
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        } else {
+            return internalList.remove(0);
+        }
 
     }
 }
