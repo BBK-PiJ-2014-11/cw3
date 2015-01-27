@@ -11,7 +11,15 @@ public class ImprovedStackImpl implements ImprovedStack {
 
 
     public ImprovedStack reverse() {
-        return null;
+        ImprovedStack reverseStack = new ImprovedStackImpl(new ArrayList());
+        if (isEmpty()) {
+            return reverseStack;
+        }else {
+            for (int i = 0; i < size(); i++) {
+                reverseStack.push(improvedStack.get(i).getReturnValue());
+            }
+        }
+        return reverseStack;
     }
 
     public void remove(Object object) {
