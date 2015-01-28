@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 public class ImprovedStackImplTest {
 
     /**
-     Testing reverse() with ArrayList
+     *Testing reverse() with ArrayList
      */
 
     @Test
@@ -33,7 +33,7 @@ public class ImprovedStackImplTest {
     }
 
     /**
-     Testing reverse() with LinkedList
+     *Testing reverse() with LinkedList
      */
 
     @Test
@@ -59,5 +59,48 @@ public class ImprovedStackImplTest {
         ImprovedStack reverseStack = testStack.reverse();
         assertEquals(reverseStack.top().getReturnValue(), 1);
     }
+
+
+    /**
+     *Testing remove() with ArrayList
+     *size() used as testing parameter
+     */
+    @Test
+    public void testRemove() throws Exception {
+        ImprovedStackImpl testStack = new ImprovedStackImpl(new ArrayList());
+
+        testStack.push(1);
+        testStack.push("two");
+        testStack.push(1);
+        testStack.push("two");
+        testStack.push(1);
+        testStack.push("two");
+        assertEquals(testStack.size(),6);
+
+        testStack.remove(1);
+        assertEquals(testStack.size(),3);
+    }
+
+    /**
+     *Testing remove() with LinkedList
+     *size() used as testing parameter
+     */
+    @Test
+    public void testRemoveLinked() throws Exception {
+        ImprovedStackImpl testStack = new ImprovedStackImpl(new LinkedList());
+
+        testStack.push(1);
+        testStack.push("two");
+        testStack.push(1);
+        testStack.push("two");
+        testStack.push(1);
+        testStack.push("two");
+        assertEquals(testStack.size(),6);
+
+        testStack.remove(1);
+        assertEquals(testStack.size(),3);
+
+    }
+
 
 }
