@@ -3,6 +3,7 @@
 */
 
 public class ImprovedStackImpl implements ImprovedStack {
+    // list ok? or should it be stack? - check
     private List improvedStack;
 
     public ImprovedStackImpl(List list){
@@ -23,7 +24,12 @@ public class ImprovedStackImpl implements ImprovedStack {
     }
 
     public void remove(Object object) {
-
+        //is get() + remove() allowed??? - check
+        for (int i=0; i< size(); i++) {
+            if (improvedStack.get(i).getReturnValue().equals(object)) {
+                improvedStack.remove(i);
+            }
+        }
     }
 
     @Override
