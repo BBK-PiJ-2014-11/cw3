@@ -17,6 +17,7 @@ public class LinkedList implements List {
         }
     }
 
+
     public int size() {
         int size = 0;
         Node counter = head;
@@ -26,7 +27,6 @@ public class LinkedList implements List {
         }
         return size;
     }
-
 
 
     public ReturnObject get(int index){
@@ -40,7 +40,6 @@ public class LinkedList implements List {
             for (int i=0; i<index; i++) {
                 currentNode = currentNode.getNext();
             }
-
             ReturnObject object = new ReturnObjectImpl(currentNode.getValue());//test thoroughly
             return object;
         }
@@ -58,53 +57,51 @@ public class LinkedList implements List {
                 for(int i=1; i < index; i++) {
                     currentNode = currentNode.getNext();
                 }
-                //return new ReturnObjectImpl(current.getValue());
-            currentNode.setNext(currentNode.getNext().getNext());// test test test
+            currentNode.setNext(currentNode.getNext().getNext());
             }
         return removedObject;
     }
 
 
-
     public ReturnObject add(int index, Object item){
-
+        Node currentNode = head;
+        Node addNode = new Node(item);
         if (item == null) {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
         } else if (index < 0 || index >= size()) {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
-        }else {
-            // check below
-            Node currentNode = head;
-            Node addNode = new Node(item);
+        }else if (index != 0 ) {
             for (int i = 1; i<index; i++) {
                 currentNode = currentNode.getNext();
             }
             addNode.setNext(currentNode.getNext());
             currentNode.setNext(addNode);
+        }else{
+            addNode.setNext(head);
+            head = addNode;
         }
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
     }
 
     public ReturnObject add(Object item){
-        //Node count = new Node(item);
         if (item == null) {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
         }
-        // below working
-        Node currentNode = new Node(item);
+        Node addNode = new Node(item);
         if (isEmpty()) {
-            head = currentNode ;
+            head = addNode;
         }else{
-            Node lastNode = head;
-            while(lastNode.getNext()!=null) {
-                lastNode = lastNode.getNext();
+            Node currentNode = head;
+            while(currentNode.getNext()!=null) {
+                currentNode = currentNode.getNext();
             }
-            lastNode.setNext(currentNode);
+            currentNode.setNext(addNode);
         }
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
     }
-
-    //printing methods for debugging
+    /**
+     * Print out methods for manual tests
+     */
     public void printOut(Node item) {
         if (item != null) {
             System.out.println(item.getValue());
@@ -129,11 +126,3 @@ public class LinkedList implements List {
 
 }
 
-/**
- * RETURN VALUES TO BE ADDED
- *
- * return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
- * return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
- * return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
- * return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT;);
- */
