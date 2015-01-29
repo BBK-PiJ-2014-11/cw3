@@ -1,8 +1,118 @@
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
 /**
  * Created by Ehshan
  */
+/**
+ * Lines 17-110 are unit tests, else manual tests
+ */
+
 public class LinkedListTest {
 
+    LinkedList newList;
+    LinkedList emptyList;
+
+    public LinkedListTest(){
+        newList = new LinkedList();
+        emptyList = new LinkedList();
+    }
+
+    @Before
+    public void createList(){
+        newList.add(1);
+        newList.add("two");
+        newList.add(3.0);
+        newList.add("4");
+        newList.add("funf");
+        newList.add("seis");
+    }
+
+    @After
+    public void kill(){
+        newList = null;
+    }
+
+
+    @Test
+    public void testEmpty(){
+        assertTrue(emptyList.isEmpty());
+    }
+
+    @Test
+    public void testSize(){
+        Assert.assertEquals(newList.size(), 6);
+    }
+
+    @Test
+    public void testGet(){
+        Assert.assertEquals(newList.get(4).getReturnValue(), "funf");
+    }
+
+    @Test
+    public void testGetOutOfBounds(){
+        Assert.assertEquals(newList.get(-1).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
+    }
+
+    @Test
+    public void testAddWithSize(){
+        newList.add("7.00");
+        Assert.assertEquals(newList.size(), 7);
+    }
+
+    @Test
+    public void testAddWithGet(){
+        newList.add("7.00");
+        Assert.assertEquals(newList.get(6).getReturnValue(), "7.00");
+    }
+
+    @Test
+    public void testAddArray(){
+        String[] arrayOfTens= {"ten","diez","dix","zehn","dieci"};
+        newList.add(arrayOfTens);
+        Assert.assertEquals(newList.size(), 7);
+    }
+
+    @Test
+    public void testRemoveWithSize(){
+        newList.remove(0);
+        Assert.assertEquals(newList.size(), 5);
+    }
+
+    @Test
+    public void testRemoveWithGet(){
+        newList.remove(0);
+        Assert.assertEquals(newList.get(0).getReturnValue(), "two");
+    }
+
+    @Test
+    public void testRemoveOnlyObject(){
+        LinkedList testList = new LinkedList();
+        testList.add("one");
+        testList.remove(0);
+        assertTrue(testList.isEmpty());
+    }
+
+    @Test
+    public void testAddWithIndex(){
+        newList.add(0, "zero");
+        Assert.assertEquals(newList.get(0).getReturnValue(), "zero");
+    }
+
+    @Test
+    public void testAddWithIndexEndOfList(){
+        newList.add(5, "five");
+        Assert.assertEquals(newList.get(6).getReturnValue(), "seis");
+    }
+
+
+    /**
+     * start of manual(aware of duplicates)
+     */
 
     public static void main(String[] args){
         LinkedListTest test = new LinkedListTest();
