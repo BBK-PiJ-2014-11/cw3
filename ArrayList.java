@@ -1,13 +1,13 @@
 /**
- * Created by Ehshan
+ * @author Ehshan Veerabangsa
  */
 public class ArrayList implements List {
     private Object[] array;
     private int arraySize;
-    private static int setSize = 11;
+    private static int defaultSize = 11;
 
     public ArrayList() {
-        array = new Object[setSize];
+        array = new Object[defaultSize];
         arraySize = 0;
     }
 
@@ -33,7 +33,6 @@ public class ArrayList implements List {
         }
     }
 
-
     public ReturnObject remove(int index){
         if (array[index] == null){
             return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
@@ -46,27 +45,22 @@ public class ArrayList implements List {
         }
     }
 
-
     public ReturnObject add(int index, Object item) {
         if (item == null)  {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
         } else if (index < 0 || index >= arraySize) {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         } else{
+            //array maxed out, needs extending
             if (array.length == arraySize + 1) {
-               //array maxed out
-                Object[] tempArray = new Object[arraySize+setSize];
-                for (int i=0; i<arraySize; i++) {
-                    tempArray[i] = array[i];
-                }
-                array = tempArray;
+                arrayExtender();
             }
             for (int i = arraySize; i> index; i--) {
                 array[i+1] = array[i];
             }
             array[index] = item;
             arraySize++;
-            return new ReturnObjectImpl(array[index]);
+            return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
         }
     }
 
@@ -74,26 +68,26 @@ public class ArrayList implements List {
         if (item == null) {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
         } else {
+            //array maxed out, needs extending
             if (array.length == arraySize + 1) {
-                //array maxed out
-                Object[] tempArray = new Object[arraySize+setSize];
-                for (int i=0; i<arraySize; i++) {
-                    tempArray[i] = array[i];
-                }
-                array = tempArray;
+                arrayExtender();
             }
             array[arraySize] = item;
             arraySize++;
-            return new ReturnObjectImpl(array[arraySize]);
+            return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
         }
+    }
+    /**
+     *Takes the array and extends it by size of 11
+     *
+     *@return the extended array
+     */
+    public void arrayExtender() {
+        Object[] tempArray = new Object[arraySize+defaultSize];
+        for (int i=0; i<arraySize; i++) {
+            tempArray[i] = array[i];
+        }
+        array = tempArray;
     }
 }
 
-/**
- * RETURN VALUES TO BE ADDED
- *
- * return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
- * return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
- * return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
- * return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT;);
- */
