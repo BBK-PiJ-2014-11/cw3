@@ -6,10 +6,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by Ehshan
- */
-/**
- * Lines 17-110 are unit tests, else manual tests
+ * @author Ehshan Veerabangsa
+ *
  */
 
 public class LinkedListTest {
@@ -104,16 +102,22 @@ public class LinkedListTest {
     }
 
     @Test
+    public void testAddWithIndexEmptyList(){
+        emptyList.add(0, "zero");
+        Assert.assertEquals(emptyList.get(0).getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
+    }
+
+    @Test
     public void testAddWithIndexEndOfList(){
         newList.add(5, "five");
         Assert.assertEquals(newList.get(6).getReturnValue(), "seis");
     }
 
-
+    /*
     /**
      * start of manual(aware of duplicates)
      */
-
+    /*
     public static void main(String[] args){
         LinkedListTest test = new LinkedListTest();
         test.listTest();
@@ -232,5 +236,5 @@ public class LinkedListTest {
         }
         System.out.println("Length: " + list.size());
     }
-
+*/
 }
