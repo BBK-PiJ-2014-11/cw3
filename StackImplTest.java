@@ -1,11 +1,11 @@
-/**
- * Created by Ehshan
- */
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
+/**
+ *@author Ehshan Veerabangsa
+ */
 public class StackImplTest{
+
 
     @Test
     public void testIsEmpty() throws Exception {
@@ -69,7 +69,7 @@ public class StackImplTest{
         newStack.push("4");
         newStack.push("funf");
         newStack.push("seis");
-        assertEquals(newList.get(0).getReturnValue(), newStack.top().getReturnValue());
+        assertEquals(newList.get(5).getReturnValue(), newStack.top().getReturnValue());
 
     }
 
@@ -83,7 +83,7 @@ public class StackImplTest{
         newStack.push("4");
         newStack.push("funf");
         newStack.push("seis");
-        assertEquals(newList.get(0).getReturnValue(), newStack.pop().getReturnValue());
+        assertEquals(newList.get(5).getReturnValue(), newStack.pop().getReturnValue());
 
     }
 }
