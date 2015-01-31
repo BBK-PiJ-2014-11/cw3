@@ -1,26 +1,22 @@
 /**
- * Created by Ehshan
+ * @author Ehshan Veerabangsa
  */
-public class SampleableListImpl implements SampleableList {
-    private List sampleList;
-
-    public SampleableListImpl(List list) {
-        sampleList = list;
-    }
-
+public class SampleableListImpl extends LinkedList implements SampleableList {
 
     public SampleableList sample(){
-        SampleableList newList = new SampleableListImpl(sampleList) ;
-        if (!isEmpty()){
-            for (int i = 0; i < sampleList.size(); i++) {
-                if (i % 2 != 0) {
-                    newList.add(sampleList.get(i).getReturnValue());
+        SampleableList newList = new SampleableListImpl() ;
+        if (!isEmpty()) {
+            for (int i = 0; i < size(); i++) {
+                if (i % 2 == 0) {
+                    newList.add(get(i).getReturnValue());
                 }
             }
         }
         return newList;
     }
 
+    //not needed
+    /*
     @Override
     public boolean isEmpty() {
         return sampleList.isEmpty();
@@ -50,5 +46,5 @@ public class SampleableListImpl implements SampleableList {
     public ReturnObject add(Object item) {
         return sampleList.add(item);
     }
-
+    */
 }
