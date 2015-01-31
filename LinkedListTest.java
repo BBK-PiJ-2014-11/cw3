@@ -4,16 +4,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
 /**
  * @author Ehshan Veerabangsa
  *
  */
-
 public class LinkedListTest {
 
     LinkedList newList;
     LinkedList emptyList;
+
 
     public LinkedListTest(){
         newList = new LinkedList();
@@ -35,10 +34,14 @@ public class LinkedListTest {
         newList = null;
     }
 
-
     @Test
     public void testEmpty(){
         assertTrue(emptyList.isEmpty());
+    }
+
+    @Test
+    public void testNotEmpty(){
+        assertTrue(newList.isEmpty());
     }
 
     @Test
@@ -48,12 +51,18 @@ public class LinkedListTest {
 
     @Test
     public void testGet(){
+        Assert.assertEquals(newList.get(0).getReturnValue(), 1);
+        Assert.assertEquals(newList.get(1).getReturnValue(), "two");
+        Assert.assertEquals(newList.get(2).getReturnValue(), 3.0);
+        Assert.assertEquals(newList.get(3).getReturnValue(), "4");
         Assert.assertEquals(newList.get(4).getReturnValue(), "funf");
+        Assert.assertEquals(newList.get(5).getReturnValue(), "seis");
     }
 
     @Test
     public void testGetOutOfBounds(){
         Assert.assertEquals(newList.get(-1).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
+        Assert.assertEquals(newList.get(6).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
     }
 
     @Test
@@ -66,6 +75,12 @@ public class LinkedListTest {
     public void testAddWithGet(){
         newList.add("7.00");
         Assert.assertEquals(newList.get(6).getReturnValue(), "7.00");
+    }
+
+    @Test
+    public void testAddInteger(){
+        newList.add(111);
+        Assert.assertEquals(newList.get(6).getReturnValue(), 111);
     }
 
     @Test
@@ -89,10 +104,9 @@ public class LinkedListTest {
 
     @Test
     public void testRemoveOnlyObject(){
-        LinkedList testList = new LinkedList();
-        testList.add("one");
-        testList.remove(0);
-        assertTrue(testList.isEmpty());
+        emptyList.add("one");
+        emptyList.remove(0);
+        assertTrue(emptyList.isEmpty());
     }
 
     @Test
