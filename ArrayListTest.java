@@ -44,6 +44,11 @@ public class ArrayListTest {
     }
 
     @Test
+    public void testNotEmpty(){
+        assertFalse(newArrayList.isEmpty());
+    }
+
+    @Test
     public void testGet(){
         Assert.assertEquals(newArrayList.get(4).getReturnValue(), "funf");
     }
@@ -76,6 +81,31 @@ public class ArrayListTest {
         emptyArrayList.add("one");
         emptyArrayList.remove(0);
         assertTrue(emptyArrayList.isEmpty());
+    }
+
+    @Test
+    public void testAddWithSize(){
+        newArrayList.add("7.00");
+        Assert.assertEquals(newArrayList.size(), 13);
+    }
+
+    @Test
+    public void testAddWithGet(){
+        newArrayList.add("7.00");
+        Assert.assertEquals(newArrayList.get(12).getReturnValue(), "7.00");
+    }
+
+    @Test
+    public void testAddInteger(){
+        newArrayList.add(111);
+        Assert.assertEquals(newArrayList.get(12).getReturnValue(), 111);
+    }
+
+    @Test
+    public void testAddArray(){
+        String[] arrayOfTens= {"ten","diez","dix","zehn","dieci"};
+        newArrayList.add(arrayOfTens);
+        Assert.assertEquals(newArrayList.size(), 7);
     }
 
     @Test
