@@ -1,3 +1,5 @@
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -6,84 +8,104 @@ import static org.junit.Assert.*;
  */
 public class StackImplTest{
 
+    List newList;
+    List emptyList;
+    Stack newStack;
+
+
+    public StackImplTest() {
+        newList = new LinkedList();
+        emptyList = new LinkedList();
+        newStack = new StackImpl(newList);
+    }
+
+    @Before
+    public void createList(){
+        newList.add("1.00");
+        newList.add(2);
+        newList.add("Three");
+        newList.add(4.0);
+        newList.add("funf");
+        newList.add("seis");
+        newList.add("sieben");
+        newList.add(8);
+        newList.add("neuf");
+        newList.add(1010);
+        newList.add(11);
+        newList.add("11+1");
+    }
+
+    @After
+    public void kill(){
+        newList = null;
+    }
 
     @Test
-    public void testIsEmpty() throws Exception {
-
-        LinkedList newList = new LinkedList();
-        AbstractStack newStack = new StackImpl(newList);
+    public void testIsEmpty() {
+        Stack newStack = new StackImpl(emptyList);
         assertTrue(newStack.isEmpty());
-
     }
 
     @Test
-    public void testNotEmpty() throws Exception {
-
-        LinkedList newList = new LinkedList();
-        newList.add(1);
-        newList.add("two");
-        newList.add(3.0);
-        newList.add("4");
-        newList.add("funf");
-        newList.add("seis");
-        AbstractStack newStack = new StackImpl(newList);
+    public void testNotEmpty() {
         assertFalse(newStack.isEmpty());
+    }
+
+    @Test
+    public void testSize() {
+        assertEquals(newStack.size(),12);
 
     }
 
     @Test
-    public void testSize() throws Exception {
-
-        LinkedList newList = new LinkedList();
-        newList.add(1);
-        newList.add("two");
-        newList.add(3.0);
-        newList.add("4");
-        newList.add("funf");
-        newList.add("seis");
-        AbstractStack newStack = new StackImpl(newList);
-        assertEquals(newStack.size(),6);
-
+    public void testPush() {
+        newStack.push(13);
+        newStack.push("fourteen");
+        newStack.push("xv");
+        newStack.push("6+10");
+        assertEquals(newStack.size(),16);
     }
 
     @Test
-    public void testPush() throws Exception {
-        LinkedList newList = new LinkedList();
-        AbstractStack newStack = new StackImpl(newList);
-        newStack.push(1);
-        newStack.push("two");
-        newStack.push(3.0);
-        newStack.push("4");
-        newStack.push("funf");
-        newStack.push("seis");
-        assertEquals(newStack.size(),6);
+    public void testTop() {
+        assertEquals(newStack.top().getReturnValue(), newList.get(newList.size()-1).getReturnValue());
+        assertEquals(newStack.top().getReturnValue(), newList.get(11).getReturnValue());
+        assertEquals(newStack.top().getReturnValue(), "11+1");
     }
 
     @Test
-    public void testTop() throws Exception {
-        LinkedList newList = new LinkedList();
-        AbstractStack newStack = new StackImpl(newList);
-        newStack.push(1);
-        newStack.push("two");
-        newStack.push(3.0);
-        newStack.push("4");
-        newStack.push("funf");
-        newStack.push("seis");
-        assertEquals(newList.get(5).getReturnValue(), newStack.top().getReturnValue());
-
+    public void testTopEmpty() {
+        Stack newStack = new StackImpl(emptyList);
+        assertEquals(newStack.top().getReturnValue(),(ErrorMessage.EMPTY_STRUCTURE) );
     }
 
     @Test
-    public void testPop() throws Exception {
-        LinkedList newList = new LinkedList();
-        AbstractStack newStack = new StackImpl(newList);
-        newStack.push(1);
-        newStack.push("two");
-        newStack.push(3.0);
-        newStack.push("4");
-        newStack.push("funf");
-        newStack.push("seis");
-        assertEquals(newList.get(5).getReturnValue(), newStack.pop().getReturnValue());
+    public void testPushTop() {
+        newStack.push(13);
+        newStack.push("fourteen");
+        newStack.push("xv");
+        newStack.push("6+10");
+        assertEquals(newStack.top().getReturnValue(), "6+10");
+    }
 
+    @Test
+    public void testPop() {
+        assertEquals(newStack.pop().getReturnValue(), "11+1");
+        assertEquals(newStack.pop().getReturnValue(), 11);
+        assertEquals(newStack.pop().getReturnValue(), 1010);
+    }
+
+    @Test
+    public void testPopAll() throws Exception {
+        for (int i = newStack.size(); i > 0; i--) {
+            newStack.pop();
+        }
+        assertTrue(newStack.isEmpty());
+    }
+
+    @Test
+    public void testPopEmpty() {
+        Stack newStack = new StackImpl(emptyList);
+        assertEquals(newStack.pop().getError(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 }
