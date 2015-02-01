@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 /**
- *@author Ehshan Veerabangsa
+ * @author Ehshan Veerabangsa
  */
 public class ArrayListTest {
 
@@ -49,19 +49,42 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testGet(){
-        Assert.assertEquals(newArrayList.get(4).getReturnValue(), "funf");
+    public void testAdd(){
+        emptyArrayList.add(0);
+        assertFalse(emptyArrayList.isEmpty());
     }
+
+    @Test
+    public void testSize(){
+        Assert.assertEquals(newArrayList.size(), 12);
+    }
+
+    @Test
+    public void testGet(){
+        Assert.assertEquals(newArrayList.get(0).getReturnValue(), "1.00");
+        Assert.assertEquals(newArrayList.get(1).getReturnValue(), 2);
+        Assert.assertEquals(newArrayList.get(2).getReturnValue(), "Three");
+        Assert.assertEquals(newArrayList.get(3).getReturnValue(), 4.0);
+        Assert.assertEquals(newArrayList.get(4).getReturnValue(), "funf");
+        Assert.assertEquals(newArrayList.get(5).getReturnValue(), "seis");
+        Assert.assertEquals(newArrayList.get(6).getReturnValue(), "sieben");
+        Assert.assertEquals(newArrayList.get(7).getReturnValue(), 8);
+        Assert.assertEquals(newArrayList.get(8).getReturnValue(), "neuf");
+        Assert.assertEquals(newArrayList.get(9).getReturnValue(), 1010);
+        Assert.assertEquals(newArrayList.get(10).getReturnValue(), 11);
+        Assert.assertEquals(newArrayList.get(11).getReturnValue(), "11+1");
+    }
+
+    @Test
+    public void testGetEmpty(){
+        Assert.assertEquals(emptyArrayList.get(0).getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
+    }
+
 
     @Test
     public void testGetOutOfBounds(){
         Assert.assertEquals(newArrayList.get(-1).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
-    }
-
-    @Test
-    public void testAddNull(){
-        newArrayList.add(null);
-        Assert.assertEquals(newArrayList.get(12).getReturnValue(), (ErrorMessage.INVALID_ARGUMENT));
+        Assert.assertEquals(newArrayList.get(13).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
     }
 
     @Test
@@ -81,6 +104,12 @@ public class ArrayListTest {
         emptyArrayList.add("one");
         emptyArrayList.remove(0);
         assertTrue(emptyArrayList.isEmpty());
+    }
+
+    @Test
+    public void testRemoveEmpty(){
+        emptyArrayList.remove(0);
+        Assert.assertEquals(emptyArrayList.get(0).getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 
     @Test
@@ -105,13 +134,39 @@ public class ArrayListTest {
     public void testAddArray(){
         String[] arrayOfTens= {"ten","diez","dix","zehn","dieci"};
         newArrayList.add(arrayOfTens);
-        Assert.assertEquals(newArrayList.size(), 7);
+        Assert.assertEquals(newArrayList.size(), 13);
     }
 
     @Test
-    public void testAddWithIndexSizeEqual(){
-        newArrayList.add(11, "ten");
-        Assert.assertEquals(newArrayList.get(12).getReturnValue(), (ErrorMessage.INVALID_ARGUMENT));
+    public void testAddWithIndex(){
+        newArrayList.add(0, "zero");
+        Assert.assertEquals(newArrayList.get(0).getReturnValue(), "zero");
+    }
+
+    @Test
+    public void testAddWithIndexEmptyList(){
+        emptyArrayList.add(0, "zero");
+        Assert.assertEquals(emptyArrayList.get(0).getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
+    }
+
+    @Test
+    public void testAddWithIndexLast(){
+        newArrayList.add(11, 1011);
+        Assert.assertEquals(newArrayList.get(11).getReturnValue(), 1011);
+        Assert.assertEquals(newArrayList.get(12).getReturnValue(), "11+1");
+    }
+
+    @Test
+    public void testAddNull(){
+        newArrayList.add(null);
+        Assert.assertEquals(newArrayList.size(), 12);
+        Assert.assertEquals(newArrayList.get(12).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
+    }
+
+    @Test
+    public void testAddWithIndexEqualsSize(){
+        newArrayList.add(12, "ten");
+        Assert.assertEquals(newArrayList.get(12).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
     }
 
     @Test

@@ -6,7 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 /**
  * @author Ehshan Veerabangsa
- *
  */
 public class LinkedListTest {
 
@@ -41,7 +40,13 @@ public class LinkedListTest {
 
     @Test
     public void testNotEmpty(){
-        assertTrue(newList.isEmpty());
+        assertFalse(newList.isEmpty());
+    }
+
+    @Test
+    public void testAdd(){
+        emptyList.add(0);
+        assertFalse(emptyList.isEmpty());
     }
 
     @Test
@@ -60,9 +65,33 @@ public class LinkedListTest {
     }
 
     @Test
+    public void testGetEmpty(){
+        Assert.assertEquals(emptyList.get(0).getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
+    }
+
+    @Test
     public void testGetOutOfBounds(){
         Assert.assertEquals(newList.get(-1).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
         Assert.assertEquals(newList.get(6).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
+    }
+
+    @Test
+    public void testRemoveWithSize(){
+        newList.remove(0);
+        Assert.assertEquals(newList.size(), 5);
+    }
+
+    @Test
+    public void testRemoveWithGet(){
+        newList.remove(0);
+        Assert.assertEquals(newList.get(0).getReturnValue(), "two");
+    }
+
+    @Test
+    public void testRemoveOnlyObject(){
+        emptyList.add("one");
+        emptyList.remove(0);
+        assertTrue(emptyList.isEmpty());
     }
 
     @Test
@@ -91,25 +120,6 @@ public class LinkedListTest {
     }
 
     @Test
-    public void testRemoveWithSize(){
-        newList.remove(0);
-        Assert.assertEquals(newList.size(), 5);
-    }
-
-    @Test
-    public void testRemoveWithGet(){
-        newList.remove(0);
-        Assert.assertEquals(newList.get(0).getReturnValue(), "two");
-    }
-
-    @Test
-    public void testRemoveOnlyObject(){
-        emptyList.add("one");
-        emptyList.remove(0);
-        assertTrue(emptyList.isEmpty());
-    }
-
-    @Test
     public void testAddWithIndex(){
         newList.add(0, "zero");
         Assert.assertEquals(newList.get(0).getReturnValue(), "zero");
@@ -122,9 +132,23 @@ public class LinkedListTest {
     }
 
     @Test
-    public void testAddWithIndexEndOfList(){
+    public void testAddWithIndexLast(){
         newList.add(5, "five");
+        Assert.assertEquals(newList.get(5).getReturnValue(), "five");
         Assert.assertEquals(newList.get(6).getReturnValue(), "seis");
+    }
+
+    @Test
+    public void testAddNull(){
+        newList.add(null);
+        Assert.assertEquals(newList.size(), 6);
+        Assert.assertEquals(newList.get(6).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
+    }
+
+    @Test
+    public void testAddWithIndexEqualsSize(){
+        newList.add(6, 6.00);
+        Assert.assertEquals(newList.get(6).getReturnValue(), (ErrorMessage.INDEX_OUT_OF_BOUNDS));
     }
 
     /*
