@@ -1,21 +1,31 @@
 /**
- * Created by Ehshan
+ *{@inheritDoc}
+ *
+ *@author Ehshan Veerabangsa
  */
 public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 
+    /**
+     *FunctionalLinkedList class constructor
+     */
     public FunctionalLinkedList() {
-        //head?
+        super();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     public ReturnObject head() {
         if (isEmpty()) {
             return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
-        } else {
+        }else{
             return new ReturnObjectImpl(get(0).getReturnValue());
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public FunctionalList rest() {
         FunctionalLinkedList newList = new FunctionalLinkedList();
         if (!isEmpty()) {

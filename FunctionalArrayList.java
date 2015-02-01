@@ -1,20 +1,32 @@
 /**
- * Created by Ehshan
+ * {@inheritDoc}
+ *
+ *@author Ehshan Veerabangsa
  */
 public class FunctionalArrayList extends ArrayList implements FunctionalList {
 
+    /**
+     *FunctionalArrayList class constructor
+     */
     public FunctionalArrayList(){
-        //
+        super();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ReturnObject head(){
         if (isEmpty()) {
             return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        }else{
+            Object head = get(0).getReturnValue();
+            return new ReturnObjectImpl(head);
         }
-        Object head = get(0).getReturnValue();
-        return new ReturnObjectImpl(head);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public FunctionalList rest(){
         if (isEmpty()) {
             FunctionalList emptyList = new FunctionalArrayList();
