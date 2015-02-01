@@ -1,11 +1,12 @@
 /**
- *@author Ehshan Veerabangsa
+ * {@inheritDoc}
  *
+ * @author Ehshan Veerabangsa
  */
 public class StackImpl extends AbstractStack {
 
     /**
-     *Stack Impl class constructor
+     * Stack Impl class constructor
      *
      * @param list - the internal list  - The data structure where the elements on the stack are stored.
      */
@@ -14,7 +15,7 @@ public class StackImpl extends AbstractStack {
     }
 
     /**
-     * {@inheritDoc}
+     *{ @inheritDoc}
      */
     @Override
     public boolean isEmpty(){
@@ -45,7 +46,7 @@ public class StackImpl extends AbstractStack {
         if (isEmpty()) {
             return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
         } else {
-            return internalList.get(size()-1);
+            return internalList.get(size() - 1);
         }
     }
 
