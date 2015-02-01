@@ -1,8 +1,67 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 /**
- * Created by Ehshan
+ *@author Ehshan Veerabangsa
  */
 public class FunctionalArrayListTest {
 
+    FunctionalList newList;
+    FunctionalList emptyList;
+
+    public  FunctionalArrayListTest () {
+        newList = new FunctionalArrayList();
+        emptyList = new FunctionalArrayList();
+    }
+
+    @Before
+    public void createList(){
+        newList.add("1.00");
+        newList.add(2);
+        newList.add("Three");
+        newList.add(4.0);
+        newList.add("funf");
+        newList.add("seis");
+        newList.add("sieben");
+        newList.add(8);
+        newList.add("neuf");
+        newList.add(1010);
+        newList.add(11);
+        newList.add("11+1");
+    }
+
+    @After
+    public void kill(){
+        newList = null;
+    }
+
+    @Test
+    public void testEmptyHead() {
+        assertEquals(emptyList.head().getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
+    }
+
+    @Test
+    public void testHead() {
+        assertEquals(newList.head().getReturnValue(), "1.00");
+    }
+
+    @Test
+    public void testEmptyRest() {
+        assertEquals(emptyList.rest().get(0).getReturnValue(),(ErrorMessage.EMPTY_STRUCTURE));
+    }
+
+    @Test
+    public void testRest() {
+        for (int i = 0; i < newList.size(); i++) {
+            int j = i + 1;
+            assertEquals(newList.rest().get(i).getReturnValue(), newList.get(j).getReturnValue());
+        }
+    }
+
+
+    /*
     public static void main(String[] args){
         FunctionalArrayListTest fArrayTest = new FunctionalArrayListTest();
         fArrayTest.headTest();
@@ -38,6 +97,6 @@ public class FunctionalArrayListTest {
 
 
     }
-
+    */
 
 }
