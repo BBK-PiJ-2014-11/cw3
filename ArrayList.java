@@ -1,16 +1,27 @@
 /**
- * @author Ehshan Veerabangsa
+ *{@inheritDoc}
+ *
+ *@author Ehshan Veerabangsa
  */
 public class ArrayList implements List {
     private Object[] array;
     private int arraySize;
     private static int defaultSize = 11;
 
+    /**
+     *ArrayList class constructor
+     *
+     *Creates an empty array list
+     */
     public ArrayList() {
         array = new Object[defaultSize];
         arraySize = 0;
     }
 
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public boolean isEmpty() {
         if (arraySize == 0) {
             return true;
@@ -19,57 +30,77 @@ public class ArrayList implements List {
         }
     }
 
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public int size(){
         return arraySize;
     }
 
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public ReturnObject get(int index) {
-        if (isEmpty()) {
-            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
-        } else if(index < 0 || index > size()){
-            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        ReturnObject errorObject;
+        errorObject = indexChecker(index);
+        if (errorObject.hasError()){
+            return errorObject;
         }else{
             return new ReturnObjectImpl(array[index]);
         }
     }
 
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public ReturnObject remove(int index){
-        if (array[index] == null){
-            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
-        } else {
-            for (int i=index; i < arraySize; i++) {
-                array[i] = array[i+1];
-            }
+        ReturnObject errorObject;
+        errorObject = indexChecker(index);
+        if (errorObject.hasError()){
+            return errorObject;
+        }else{
+            indicesDown(index);
             arraySize--;
             return new ReturnObjectImpl(array[index]);
         }
     }
 
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public ReturnObject add(int index, Object item) {
-        if (item == null)  {
+        ReturnObject errorObject;
+        errorObject = indexChecker(index);
+        if (errorObject.hasError()){
+            return errorObject;
+        }else if(item == null)  {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
-        } else if (index < 0 || index >= arraySize) {
-            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
-        } else{
+        }else{
             //array maxed out, needs extending
-            if (array.length == arraySize + 1) {
+            if (arrayMax()) {
                 arrayExtender();
             }
-            for (int i = arraySize; i> index; i--) {
-                array[i+1] = array[i];
-            }
+            indicesUp(index);
             array[index] = item;
             arraySize++;
             return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
         }
     }
 
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public ReturnObject add(Object item) {
-        if (item == null) {
+        if (item == null)  {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
-        } else {
+        }else{
             //array maxed out, needs extending
-            if (array.length == arraySize + 1) {
+            if (arrayMax()) {
                 arrayExtender();
             }
             array[arraySize] = item;
@@ -77,10 +108,22 @@ public class ArrayList implements List {
             return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
         }
     }
+
+    /**
+     *Checks if the array is at full capacity
+     *
+     *@return true or false
+     */
+    public boolean arrayMax() {
+        if (array.length == arraySize + 1) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      *Takes the array and extends it by size of 11
-     *
-     *@return the extended array
      */
     public void arrayExtender() {
         Object[] tempArray = new Object[arraySize+defaultSize];
@@ -89,5 +132,45 @@ public class ArrayList implements List {
         }
         array = tempArray;
     }
+
+    /**
+     *Takes the index value of object in list and returns an appropriate error object
+     *
+     *@param index of object being referenced
+     *
+     *@return An object containing a error message
+     */
+    private ReturnObject indexChecker(int index){
+        if (isEmpty()) {
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        } else if(index < 0 || index > arraySize -1){
+            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        }else{
+            return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
+        }
+    }
+
+    /**
+     *Increases the index position of all stored objects after the added object
+     *
+     *@param index of object being referenced
+     */
+    public void indicesUp(int index) {
+        for (int i = arraySize; i>= index; i--) {
+            array[i+1] = array[i];
+        }
+    }
+
+    /**
+     *Decreases the index position of all stored objects after the removed object
+     *
+     *@param index of object being referenced
+     */
+    public void indicesDown(int index) {
+        for (int i = index; i < arraySize; i++) {
+            array[i] = array[i+1];
+        }
+    }
+
 }
 

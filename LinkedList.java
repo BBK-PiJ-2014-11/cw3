@@ -1,14 +1,25 @@
 /**
- * Created by Ehshan
-*/
+ *{@inheritDoc}
+ *
+ *@author Ehshan Veerabangsa
+ */
 public class LinkedList implements List {
 
     private Node head;
 
+    /**
+     *LikedList class constructor
+     *
+     *Creates an empty list
+     */
     public LinkedList() {
         head = null;
     }
 
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public boolean isEmpty() {
         if (head == null) {
             return true;
@@ -17,7 +28,10 @@ public class LinkedList implements List {
         }
     }
 
-
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public int size() {
         int size = 0;
         Node counter = head;
@@ -28,28 +42,35 @@ public class LinkedList implements List {
         return size;
     }
 
-
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public ReturnObject get(int index){
-
-        if (isEmpty()) {
-            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
-        }else if (index < 0 || index >= size()) {
-            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        ReturnObject errorObject;
+        errorObject = indexChecker(index);
+        if (errorObject.hasError()){
+            return errorObject;
         } else {
             Node currentNode = head;
             for (int i=0; i<index; i++) {
                 currentNode = currentNode.getNext();
             }
-            ReturnObject object = new ReturnObjectImpl(currentNode.getValue());//test thoroughly
+            ReturnObject object = new ReturnObjectImpl(currentNode.getValue());
             return object;
         }
     }
 
-
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public ReturnObject remove(int index){
         ReturnObject removedObject = get(index);
-        if (index < 0 || index >= size()) {
-            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        ReturnObject errorObject;
+        errorObject = indexChecker(index);
+        if (errorObject.hasError()){
+            return errorObject;
         }else if(index == 0) {
             head = head.getNext();
         }else{
@@ -62,14 +83,19 @@ public class LinkedList implements List {
         return removedObject;
     }
 
-
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public ReturnObject add(int index, Object item){
         Node currentNode = head;
         Node addNode = new Node(item);
-        if (item == null) {
+        ReturnObject errorObject;
+        errorObject = indexChecker(index);
+        if (errorObject.hasError()){
+            return errorObject;
+        }else if (item == null) {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
-        } else if (index < 0 || index >= size()) {
-            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         }else if (index != 0 ) {
             for (int i = 1; i<index; i++) {
                 currentNode = currentNode.getNext();
@@ -83,12 +109,15 @@ public class LinkedList implements List {
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
     }
 
+    /**
+     *{@inheritDoc}
+     */
+    @Override
     public ReturnObject add(Object item){
+        Node addNode = new Node(item);
         if (item == null) {
             return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
-        }
-        Node addNode = new Node(item);
-        if (isEmpty()) {
+        }else if (isEmpty()) {
             head = addNode;
         }else{
             Node currentNode = head;
@@ -100,8 +129,24 @@ public class LinkedList implements List {
         return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
     }
     /**
-     * Print out methods for manual tests
+     *Takes the index value of object in list and returns an appropriate error object
+     *
+     *@param index of object being referenced
+     *
+     *@return An object containing a error message
      */
+    private ReturnObject indexChecker(int index){
+        if (isEmpty()) {
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        } else if(index < 0 || index >=size()){
+            return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        }else{
+            return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
+        }
+    }
+    /*
+
+    //Print out methods for manual tests
     public void printOut(Node item) {
         if (item != null) {
             System.out.println(item.getValue());
@@ -123,6 +168,6 @@ public class LinkedList implements List {
             printOut(currentNode);
         }
     }
-
+    */
 }
 
