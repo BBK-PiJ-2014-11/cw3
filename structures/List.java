@@ -1,3 +1,5 @@
+package structures;
+
 /**
  * A list is a collection of objects that are sorted and can be
  * accessed by index. The first element in the list is at index 0.
@@ -15,7 +17,7 @@
  * covered exceptions yet, we need another mechanism to report
  * errors. In order to do that, methods of this list will return a
  * {@see ReturnObject} that will contain either an object or an error
- * value of the right kind (as defined in {@see ErrorMessage}). 
+ * value of the right kind (as defined in {@see ErrorMessage}).
  * 
  * @author PiJ
  */

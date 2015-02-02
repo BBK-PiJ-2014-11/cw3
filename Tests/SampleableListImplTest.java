@@ -1,8 +1,9 @@
+package Tests;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 /**
  * @author Ehshan Veerabangsa
  */
@@ -52,7 +53,7 @@ public class SampleableListImplTest {
 
     /*
     public static void main(String[] args){
-        SampleableListImplTest sampleTest = new SampleableListImplTest();
+        Tests.SampleableListImplTest sampleTest = new Tests.SampleableListImplTest();
         sampleTest.sampleTest();
         System.out.println("");
 

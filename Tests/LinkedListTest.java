@@ -1,3 +1,5 @@
+package Tests;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -157,7 +159,7 @@ public class LinkedListTest {
      */
     /*
     public static void main(String[] args){
-        LinkedListTest test = new LinkedListTest();
+        Tests.LinkedListTest test = new Tests.LinkedListTest();
         test.listTest();
         System.out.println("");
 

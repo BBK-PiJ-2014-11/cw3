@@ -1,3 +1,5 @@
+package Tests;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -177,7 +179,7 @@ public class ArrayListTest {
 
     /*
     public static void main(String[] args){
-        ArrayListTest aTest = new ArrayListTest();
+        Tests.ArrayListTest aTest = new Tests.ArrayListTest();
         aTest.listTest();
         System.out.println("");
 

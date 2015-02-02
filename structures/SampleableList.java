@@ -1,3 +1,5 @@
+package structures;
+
 /**
  * A sampleable list can be sampled. 
  * 

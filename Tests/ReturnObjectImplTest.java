@@ -1,3 +1,6 @@
+package Tests;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -40,22 +43,22 @@ public class ReturnObjectImplTest {
 
     @Test
     public void testGetError() {
-        assertEquals(one.getError(), ErrorMessage.NO_ERROR);
-        assertEquals(two.getError(), ErrorMessage.NO_ERROR);
-        assertEquals(three.getError(), ErrorMessage.NO_ERROR);
-        assertEquals(four.getError(), ErrorMessage.INVALID_ARGUMENT);
-        assertEquals(five.getError(), ErrorMessage.EMPTY_STRUCTURE);
-        assertEquals(six.getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        Assert.assertEquals(one.getError(), ErrorMessage.NO_ERROR);
+        Assert.assertEquals(two.getError(), ErrorMessage.NO_ERROR);
+        Assert.assertEquals(three.getError(), ErrorMessage.NO_ERROR);
+        Assert.assertEquals(four.getError(), ErrorMessage.INVALID_ARGUMENT);
+        Assert.assertEquals(five.getError(), ErrorMessage.EMPTY_STRUCTURE);
+        Assert.assertEquals(six.getError(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
     }
 
     @Test
     public void testGetReturnValue() {
-        assertEquals(one.getReturnValue(), 1);
-        assertEquals(two.getReturnValue(), "two");
-        assertEquals(three.getReturnValue(), arrayOfTens);
-        assertEquals(four.getReturnValue(), ErrorMessage.INVALID_ARGUMENT);
-        assertEquals(five.getReturnValue(), ErrorMessage.EMPTY_STRUCTURE);
-        assertEquals(six.getReturnValue(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
+        Assert.assertEquals(one.getReturnValue(), 1);
+        Assert.assertEquals(two.getReturnValue(), "two");
+        Assert.assertEquals(three.getReturnValue(), arrayOfTens);
+        Assert.assertEquals(four.getReturnValue(), ErrorMessage.INVALID_ARGUMENT);
+        Assert.assertEquals(five.getReturnValue(), ErrorMessage.EMPTY_STRUCTURE);
+        Assert.assertEquals(six.getReturnValue(), ErrorMessage.INDEX_OUT_OF_BOUNDS);
     }
 
 }

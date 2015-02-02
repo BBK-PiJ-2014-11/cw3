@@ -1,6 +1,10 @@
+package Tests;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import Structures.*;
 
 import static org.junit.Assert.*;
 
@@ -51,7 +55,7 @@ public class ImprovedStackImplTest {
 
     @Test
     public void testSize() {
-        assertEquals(testStack.size(),12);
+        Assert.assertEquals(testStack.size(), 12);
 
     }
 
@@ -61,20 +65,20 @@ public class ImprovedStackImplTest {
         testStack.push("fourteen");
         testStack.push("xv");
         testStack.push("6+10");
-        assertEquals(testStack.size(),16);
+        Assert.assertEquals(testStack.size(), 16);
     }
 
     @Test
     public void testTop() {
-        assertEquals(testStack.top().getReturnValue(), newList.get(newList.size()-1).getReturnValue());
-        assertEquals(testStack.top().getReturnValue(), newList.get(11).getReturnValue());
-        assertEquals(testStack.top().getReturnValue(), "three");
+        Assert.assertEquals(testStack.top().getReturnValue(), newList.get(newList.size() - 1).getReturnValue());
+        Assert.assertEquals(testStack.top().getReturnValue(), newList.get(11).getReturnValue());
+        Assert.assertEquals(testStack.top().getReturnValue(), "three");
     }
 
     @Test
     public void testTopEmpty() {
         Stack testStack = new StackImpl(emptyList);
-        assertEquals(testStack.top().getReturnValue(),(ErrorMessage.EMPTY_STRUCTURE) );
+        Assert.assertEquals(testStack.top().getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 
     @Test
@@ -83,14 +87,14 @@ public class ImprovedStackImplTest {
         testStack.push("fourteen");
         testStack.push("xv");
         testStack.push("6+10");
-        assertEquals(testStack.top().getReturnValue(), "6+10");
+        Assert.assertEquals(testStack.top().getReturnValue(), "6+10");
     }
 
     @Test
     public void testPop() {
-        assertEquals(testStack.pop().getReturnValue(), "Three");
-        assertEquals(testStack.pop().getReturnValue(), 2);
-        assertEquals(testStack.pop().getReturnValue(), "1.00");
+        Assert.assertEquals(testStack.pop().getReturnValue(), "Three");
+        Assert.assertEquals(testStack.pop().getReturnValue(), 2);
+        Assert.assertEquals(testStack.pop().getReturnValue(), "1.00");
     }
 
     @Test
@@ -104,7 +108,7 @@ public class ImprovedStackImplTest {
     @Test
     public void testPopEmpty() {
         Stack testStack = new StackImpl(emptyList);
-        assertEquals(testStack.pop().getError(), (ErrorMessage.EMPTY_STRUCTURE));
+        Assert.assertEquals(testStack.pop().getError(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 
     @Test
@@ -114,22 +118,22 @@ public class ImprovedStackImplTest {
         testStack.pop();
         ImprovedStack reverseStack = testStack.reverse();
         assertTrue(testStack.isEmpty());
-        assertEquals(reverseStack.top().getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
+        Assert.assertEquals(reverseStack.top().getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 
     @Test
     public void testReverse() {
         ImprovedStack reverseStack = testStack.reverse();
-        assertEquals(testStack.size(),12);
-        assertEquals(reverseStack.top().getReturnValue(), "Three");
+        Assert.assertEquals(testStack.size(), 12);
+        Assert.assertEquals(reverseStack.top().getReturnValue(), "Three");
     }
 
     @Test
     public void testRemove() {
-        assertEquals(testStack.size(),12);
+        Assert.assertEquals(testStack.size(), 12);
         testStack.remove("Three");
-        assertEquals(testStack.top().getReturnValue(), 2);
-        assertEquals(testStack.size(),8);
+        Assert.assertEquals(testStack.top().getReturnValue(), 2);
+        Assert.assertEquals(testStack.size(), 8);
     }
 
 }

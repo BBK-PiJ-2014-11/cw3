@@ -1,3 +1,5 @@
+package structures;
+
 public enum ErrorMessage {
     /**
      * No error. 

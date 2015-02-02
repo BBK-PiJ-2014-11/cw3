@@ -1,3 +1,5 @@
+package structures;
+
 /**
  * A wrapper containing either an object (the result of an operation
  * on a data structure) or an error value.

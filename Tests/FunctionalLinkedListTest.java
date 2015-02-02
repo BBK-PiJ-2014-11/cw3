@@ -1,4 +1,7 @@
+package Tests;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,24 +42,24 @@ public class FunctionalLinkedListTest {
 
     @Test
     public void testEmptyHead() {
-        assertEquals(emptyList.head().getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
+        Assert.assertEquals(emptyList.head().getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 
     @Test
     public void testHead() {
-        assertEquals(newList.head().getReturnValue(), "1.00");
+        Assert.assertEquals(newList.head().getReturnValue(), "1.00");
     }
 
     @Test
     public void testEmptyRest() {
-        assertEquals(emptyList.rest().get(0).getReturnValue(),(ErrorMessage.EMPTY_STRUCTURE));
+        Assert.assertEquals(emptyList.rest().get(0).getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 
     @Test
     public void testRest() {
         for (int i = 0; i < newList.size(); i++) {
             int j = i + 1;
-            assertEquals(newList.rest().get(i).getReturnValue(), newList.get(j).getReturnValue());
+            Assert.assertEquals(newList.rest().get(i).getReturnValue(), newList.get(j).getReturnValue());
         }
     }
 
@@ -64,7 +67,7 @@ public class FunctionalLinkedListTest {
 
     /*
     public static void main(String[] args){
-        FunctionalLinkedListTest fListTest = new FunctionalLinkedListTest();
+        Tests.FunctionalLinkedListTest fListTest = new Tests.FunctionalLinkedListTest();
         fListTest.headTest();
         System.out.println("");
 

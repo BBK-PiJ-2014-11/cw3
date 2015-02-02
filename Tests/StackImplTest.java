@@ -1,4 +1,7 @@
+package Tests;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -53,7 +56,7 @@ public class StackImplTest{
 
     @Test
     public void testSize() {
-        assertEquals(newStack.size(),12);
+        Assert.assertEquals(newStack.size(), 12);
 
     }
 
@@ -63,20 +66,20 @@ public class StackImplTest{
         newStack.push("fourteen");
         newStack.push("xv");
         newStack.push("6+10");
-        assertEquals(newStack.size(),16);
+        Assert.assertEquals(newStack.size(), 16);
     }
 
     @Test
     public void testTop() {
-        assertEquals(newStack.top().getReturnValue(), newList.get(newList.size()-1).getReturnValue());
-        assertEquals(newStack.top().getReturnValue(), newList.get(11).getReturnValue());
-        assertEquals(newStack.top().getReturnValue(), "11+1");
+        Assert.assertEquals(newStack.top().getReturnValue(), newList.get(newList.size() - 1).getReturnValue());
+        Assert.assertEquals(newStack.top().getReturnValue(), newList.get(11).getReturnValue());
+        Assert.assertEquals(newStack.top().getReturnValue(), "11+1");
     }
 
     @Test
     public void testTopEmpty() {
         Stack newStack = new StackImpl(emptyList);
-        assertEquals(newStack.top().getReturnValue(),(ErrorMessage.EMPTY_STRUCTURE) );
+        Assert.assertEquals(newStack.top().getReturnValue(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 
     @Test
@@ -85,14 +88,14 @@ public class StackImplTest{
         newStack.push("fourteen");
         newStack.push("xv");
         newStack.push("6+10");
-        assertEquals(newStack.top().getReturnValue(), "6+10");
+        Assert.assertEquals(newStack.top().getReturnValue(), "6+10");
     }
 
     @Test
     public void testPop() {
-        assertEquals(newStack.pop().getReturnValue(), "11+1");
-        assertEquals(newStack.pop().getReturnValue(), 11);
-        assertEquals(newStack.pop().getReturnValue(), 1010);
+        Assert.assertEquals(newStack.pop().getReturnValue(), "11+1");
+        Assert.assertEquals(newStack.pop().getReturnValue(), 11);
+        Assert.assertEquals(newStack.pop().getReturnValue(), 1010);
     }
 
     @Test
@@ -106,6 +109,6 @@ public class StackImplTest{
     @Test
     public void testPopEmpty() {
         Stack newStack = new StackImpl(emptyList);
-        assertEquals(newStack.pop().getError(), (ErrorMessage.EMPTY_STRUCTURE));
+        Assert.assertEquals(newStack.pop().getError(), (ErrorMessage.EMPTY_STRUCTURE));
     }
 }
