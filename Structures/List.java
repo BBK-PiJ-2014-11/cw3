@@ -1,4 +1,4 @@
-package structures;
+package Structures;
 
 /**
  * A list is a collection of objects that are sorted and can be

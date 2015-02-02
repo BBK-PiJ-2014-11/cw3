@@ -1,4 +1,4 @@
-package structures;
+package Structures;
 
 /**
  * A sampleable list can be sampled. 

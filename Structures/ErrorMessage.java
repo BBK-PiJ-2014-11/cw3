@@ -1,4 +1,4 @@
-package structures;
+package Structures;
 
 public enum ErrorMessage {
     /**

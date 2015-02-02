@@ -1,4 +1,4 @@
-package structures;
+package Structures;
 
 /**
  * An implementation of a stack that uses a {@List} as the underlying
